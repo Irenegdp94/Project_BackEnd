@@ -1,0 +1,15 @@
+{
+  "name": "notesbend",
+  "version": "1.0.0",
+  "description": "primera prueba back end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.11"
+  }
+}

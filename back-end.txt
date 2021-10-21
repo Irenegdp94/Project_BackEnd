@@ -1,0 +1,39 @@
+npm --> gestor de paquetes de nodejs (para instalar cosas)
+Instala las cosas solo en el proyecto
+
+
+1.npm init
+2.seguir pasos
+se crea un archivo .json con informacion sobre el proyecto
+3.npm install mongoose
+4. conectar proyecto y bbdd (seeds.js) (puede llamarse de otra forma)
+5. en seeds:
+    traer paquete de mongoose
+        const mongoose = require("mongoose")
+        mongoose.connect("url de la bbdd")
+        .then(() => {
+            console.log("conectado")
+        })
+        .catch((error) => {
+            console.log("error")
+        });
+
+        (.connect devuelve una promesa, para capturarla usamos .then)
+
+
+
+dotenv: para declarar variables de entorno (global)
+
+instalar dotenv: npm install dotenv
+crear archivo .env (para guardar las contraseñas)
+    ejemplo: BD_PASSWORD=contraseñasinespacios
+    para llamarlo:
+        require('dotenv').config()
+        process.env.BD_PASSWORD
+
+
+crear .gitignore y añadir lo que no quiero que se suba a github
+    .env
+    node_modules
+
+para descargar todo lo que haya en las dependencias de package.json: npm install
