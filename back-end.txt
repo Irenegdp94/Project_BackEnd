@@ -37,3 +37,53 @@ crear .gitignore y añadir lo que no quiero que se suba a github
     node_modules
 
 para descargar todo lo que haya en las dependencias de package.json: npm install
+
+
+crear directorio de modelos:
+-crear js para cada modelo
+-const mongoose = require("mongoose") importar mongoose
+-el modelo es una clase
+    const Schema = mongoose.Schema (clase de mongoose para crear modelos)
+    const userSchema = new Schema({
+        username: {type: String, required: true},
+        password: String,
+    })
+
+-crear el modelo con el esquema
+    const User = mongoose.model("nombre del modelo", "schema")
+    exportar modelo --> 
+
+por cada schema se crea una collecion
+
+
+
+en el seeds:
+-const User = require("./carpeta y archivo donde este")
+
+
+para crear servidor:
+app.js
+utilizar express (npm install express)
+
+para tener el servidor siempre a la escucha
+(instalar nodemon --> npm install -g nodemon)
+nodemon
+
+
+// hasear contraseñas: 
+
+istallar bcrypt --> npm install bcrypt
+en el seeds
+    const bcrypt = require("bcrypt")
+    const salt = bcrypt.genSaltSycn(10) //las vueltas que da para encriptar la contraseña
+
+let passwords = ["abc","gvd"]; //meter las contraseñas en una variables
+let hashes = passwords.map((password) => bcrypt.hashSync(password,salt));
+
+
+pasos
+-crear modelo
+-Inyecta datos a la base de datos mediante seeds
+-Crear una ruta de tipo post
+-Comprobar la ruta en postman
+-Generar cliente (HTML, JS, CSS)
