@@ -4,15 +4,15 @@ const mongoose = require ("mongoose");
 const User = require("./models/User");
 const Point = require("./models/Point");
 const app = express();
-
+const bcrypt = require("bcrypt")
 
 
 //coger datos del html
-let user_name = document.getElementById("user_name").value
-let user_password = document.getElementById("user_password").value
+//let user_name = document.getElementById("user_name").value
+//let user_password = document.getElementById("user_password").value
 //hasear contraseña
 
-let login_user = {user_name, user_password} //pasar al post
+//let login_user = {user_name, user_password} //pasar al post
 
 
 mongoose
@@ -31,11 +31,54 @@ app.get("/getUsers", async (req, res) => { //req: lo que llega del cliente res: 
     let users = await User.find();
     res.json({usuarios:users});  //{}
 })
-app.post("/", (req, res) => {
-    console.log(req.body)
-    res.json({texto: "hola"})
+
+//ruta login
+
+app.post("/login",async (req,res) => {
+    let nom = req.body.nombre
+    let pass = req.body.pass
+    let info_user = await User.find({username: nom})
+    bcrypt.compare(pass, info_user[0].password, (err, result) => {
+        
+        if (result == true){
+            res.json({
+                auth: true,
+                message: "log ok"
+            })
+            return
+        }else if (result == false){
+            res.json({
+                auth: false,
+                message: "log Nok"
+            })
+            return
+        }
+    });
+
+   // res.json({texto: "adios"})
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // montar servidor
 app.listen(5000, () => {

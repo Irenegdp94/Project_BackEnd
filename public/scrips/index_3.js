@@ -9,6 +9,31 @@ let image_pipeUP = document.getElementById("pipeUP");
 let image_pipeDOWN = document.getElementById("pipeDOWN");
 let form = document.getElementById("form-container");
 
+/////login///////////////////////////////////////////////////////////////////////////
+
+async function get_info_user(){
+  let url = "http://localhost:5000/login";
+  let require_data = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nom: name,
+      pass: pass,
+      
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result)
+    });
+
+  return require_data;
+}
+
+///////////GAME/////////////////////////////////////////////////////////////////////////////////
 //game vars and consts
 let dX_bird = 50;
 let dY_bird = 180;
@@ -101,11 +126,6 @@ function draw() {
       dY_bird -= fly;
     }
 
-    // if (y_bird < y_pipe_up) {
-    //   console.log(y_bird)
-    //   console.log(y_pipe_up)
-    //   console.log("fail")
-    // }
   }
 
   requestAnimationFrame(draw);
@@ -138,3 +158,6 @@ document.addEventListener("keyup", (event) => {
 
 //start game
 window.onload = init;
+
+
+
