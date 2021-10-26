@@ -4,30 +4,50 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game</title>
+    <title>Form</title>
     <link rel="stylesheet" href="./style/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
   </head>
   <body>
-    <div class="main-container">
-      <button class="button" id="start-button">START</button>
-
-      <canvas class="canvas" id="canvas">
-        <img
-          src="./images/background.png"
-          id="background"
-          alt="background-image"
-        />
-        <img src="./images/flappy.png" id="flappy" alt="flappy-image" />
-        <img src="./images/obstacle_top.png" id="pipeUP" alt="pipe-image" />
-        <img
-          src="./images/obstacle_bottom.png"
-          id="pipeDOWN"
-          alt="pipe-image"
-        />
-      </canvas>
+    <div class="image-container">
+      <span id="form-container" class="form-container">
+        <form id="form">
+          <div class="form-group row">
+            <label for="user_name" class="col-sm-2 col-form-label"
+              >User name</label
+            >
+            <div class="col-sm-10">
+              <input
+                class="form-control"
+                id="user_name"
+                placeholder="User name"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="user_password" class="col-sm-2 col-form-label"
+              >Password</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="password"
+                class="form-control"
+                id="user_password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary" id="loginButton">
+                Sign in
+              </button>
+            </div>
+          </div>
+        </form>
+      </span>
+      <p id="paragraph"></p>
     </div>
 
-    <script src="./scrips/index_3.js"></script>
+    <script src="./scrips/login.js"></script>
   </body>
 </html>

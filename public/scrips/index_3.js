@@ -1,3 +1,4 @@
+//const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
 let canvas = document.getElementById("canvas");
 canvas.width = 1000;
 canvas.height = 600;
@@ -7,31 +8,10 @@ let image_flappy = document.getElementById("flappy");
 let buttonStart = document.getElementById("start-button");
 let image_pipeUP = document.getElementById("pipeUP");
 let image_pipeDOWN = document.getElementById("pipeDOWN");
-let form = document.getElementById("form-container");
 
-/////login///////////////////////////////////////////////////////////////////////////
 
-async function get_info_user(){
-  let url = "http://localhost:5000/login";
-  let require_data = await fetch(url, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      nom: name,
-      pass: pass,
-      
-    }),
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      console.log(result)
-    });
+//cuando pare el juego hacer fecth para guardar puntuacion
 
-  return require_data;
-}
 
 ///////////GAME/////////////////////////////////////////////////////////////////////////////////
 //game vars and consts
@@ -47,11 +27,11 @@ let pipes = [{ x: dX_pipe, y: dY_pipe }];
 
 let gravity = 5;
 let fly = 5;
-// let frames = 0;
 
 let key_press = false;
 let collision = false;
 
+let points_round = -10;
 //funtions
 
 function init() {
@@ -107,6 +87,8 @@ function draw() {
       if (pipes[i].x == 500) {
         dY_pipe = Math.floor(Math.random() * (max - min + 1) + min);
         pipes.push({ x: dX_pipe, y: dY_pipe });
+
+        points_round += 10;
       }
 
       //colision
@@ -116,6 +98,7 @@ function draw() {
           dY_bird + 40 > pipes[i].y + canvas.height
         ) {
           collision = true;
+          //juego terminado
         }
       }
     }
@@ -125,9 +108,8 @@ function draw() {
     } else if (key_press == true) {
       dY_bird -= fly;
     }
-
   }
-
+  
   requestAnimationFrame(draw);
 }
 
@@ -158,6 +140,3 @@ document.addEventListener("keyup", (event) => {
 
 //start game
 window.onload = init;
-
-
-
